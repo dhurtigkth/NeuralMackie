@@ -55,7 +55,7 @@ def train(x, y, n_epochs):
         print("training started..")
         for epoch in range(n_epochs):
             model.train()
-            for X_batch, y_batch in tqdm(loader, desc=f"Epoch {epoch+1}/{n_epochs}", leave=False):
+            for X_batch, y_batch in tqdm(train_loader, desc=f"Epoch {epoch+1}/{n_epochs}", leave=False):
                 y_pred = model(X_batch)
                 loss = loss_fn(y_pred, y_batch)
                 optimizer.zero_grad()
@@ -70,7 +70,7 @@ def train(x, y, n_epochs):
             test_rmse_total = 0.0
             num_batches = 0
             with torch.no_grad():
-                for X_batch, y_batch in test_loader:
+                for X_batch, y_batch in tqdm(test_loader, desc="running inference on test set.."):
                     y_pred = model(X_batch)  # Run inference on smaller batches
                     batch_rmse = torch.sqrt(loss_fn(y_pred, y_batch))  # Compute RMSE for the batch
                     test_rmse_total += batch_rmse.item()
