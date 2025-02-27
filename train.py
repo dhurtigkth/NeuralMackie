@@ -71,9 +71,9 @@ def train(x, y, n_epochs):
 
 
 
-data, targets = audio_parser("Training Data/C", "Training Data/D", 512)
-trained_model = train(data, targets, 2000)
+#data, targets = audio_parser("Training Data/C", "Training Data/D", 512)
+#trained_model = train(data, targets, 2000)
 
 
-with open('models/gru_torch.json', 'w') as json_file:
-    json.dump(trained_model.state_dict(), json_file,cls=EncodeTensor)
+#with open('models/gru_torch.json', 'w') as json_file:
+#    json.dump(trained_model.state_dict(), json_file,cls=EncodeTensor)
