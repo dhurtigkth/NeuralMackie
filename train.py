@@ -32,7 +32,7 @@ class LSTM_Model(torch.nn.Module):
         return x
 
 def train(x, y, n_epochs):
-        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.05, random_state=42)
         x_train = torch.tensor(x_train, dtype=torch.float32)
         y_train = torch.tensor(y_train, dtype=torch.float32)
         x_test = torch.tensor(x_test, dtype=torch.float32)
@@ -62,11 +62,11 @@ def train(x, y, n_epochs):
             print("evaluating model..")
             model.eval()
             with torch.no_grad():
-                y_pred = model(x_train)
-                train_rmse = np.sqrt(loss_fn(y_pred, y_train))
+                #y_pred = model(x_train)
+                #train_rmse = np.sqrt(loss_fn(y_pred, y_train))
                 y_pred = model(x_test)
                 test_rmse = np.sqrt(loss_fn(y_pred, y_test))
-            print("Epoch %d: train RMSE %.4f, test RMSE %.4f" % (epoch, train_rmse, test_rmse))
+            print("Epoch %d: test RMSE %.4f" % (epoch, test_rmse))
             return model
     
 
