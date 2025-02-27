@@ -70,6 +70,7 @@ def train(x, y, n_epochs):
                 #train_rmse = np.sqrt(loss_fn(y_pred, y_train))
                 y_pred = model(x_test)
                 test_rmse = np.sqrt(loss_fn(y_pred, y_test))
+                torch.cuda.empty_cache()
             print("Epoch %d: test RMSE %.4f" % (epoch, test_rmse))
             return model
     
