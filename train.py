@@ -59,6 +59,7 @@ def train(x, y, n_epochs):
             # Validation
             if epoch % 100 != 0:
                 continue
+            print("evaluating model..")
             model.eval()
             with torch.no_grad():
                 y_pred = model(x_train)
