@@ -12,7 +12,7 @@ def audio_parser(filepath_clean, filepath_dist, buffer_size):
     dist_buffers = []
     print("we're in..")
     for filename in glob.glob(os.path.join(filepath_clean, '*.wav')):
-        name = filename.split("/")[5].split("_")
+        name = filename.split("/")[4].split("_")
         #/content/drive/MyDrive/NeuralMackie/Training Data/C
         print(name)
         # Use the name to get the parameter values from the mixing table
