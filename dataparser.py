@@ -3,7 +3,7 @@ import wave, os, glob
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
-import tqdm as tqdm
+from tqdm import tqdm
 
 
 def audio_parser(filepath_clean, filepath_dist, buffer_size):
