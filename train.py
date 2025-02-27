@@ -60,6 +60,7 @@ def train(x, y, n_epochs):
                 optimizer.step()
             # Validation
             if epoch % 100 != 0:
+                torch.cuda.empty_cache() # Try this, maybe it helps
                 continue
             print("evaluating model..")
             model.eval()
