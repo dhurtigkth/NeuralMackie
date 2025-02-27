@@ -34,6 +34,7 @@ class LSTM_Model(torch.nn.Module):
 def train(x, y, n_epochs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print("using " + str(device))
+        torch.cuda.empty_cache()
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.05, random_state=42)
         x_train = torch.tensor(x_train, dtype=torch.float32).to(device)
         y_train = torch.tensor(y_train, dtype=torch.float32).to(device)
