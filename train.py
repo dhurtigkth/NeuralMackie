@@ -48,8 +48,9 @@ def train(x, y, n_epochs):
         
         # Load the training data
         train_dataset = TensorDataset(x_train, y_train)
-        print("batch size: ", 2)
-        loader = DataLoader(train_dataset, shuffle=True, batch_size=2)
+        train_loader = DataLoader(train_dataset, shuffle=True, batch_size=2)
+        test_dataset = TensorDataset(x_test, y_test)
+        test_loader = DataLoader(test_dataset, shuffle=True, batch_size=2)
 
         print("training started..")
         for epoch in range(n_epochs):
@@ -66,13 +67,16 @@ def train(x, y, n_epochs):
                 continue
             print("evaluating model..")
             model.eval()
+            test_rmse_total = 0.0
+            num_batches = 0
             with torch.no_grad():
-                #y_pred = model(x_train)
-                #train_rmse = np.sqrt(loss_fn(y_pred, y_train))
-                y_pred = model(x_test)
-                test_rmse = np.sqrt(loss_fn(y_pred, y_test))
-                torch.cuda.empty_cache()
-            print("Epoch %d: test RMSE %.4f" % (epoch, test_rmse))
+                for X_batch, y_batch in test_loader:
+                    y_pred = model(X_batch)  # Run inference on smaller batches
+                    batch_rmse = torch.sqrt(loss_fn(y_pred, y_batch))  # Compute RMSE for the batch
+                    test_rmse_total += batch_rmse.item()
+                    num_batches += 1
+                    torch.cuda.empty_cache()  # Free up memory
+            print("Epoch %d: test RMSE %.4f" % (epoch, test_rmse_total/num_batches))
             return model
     
 
