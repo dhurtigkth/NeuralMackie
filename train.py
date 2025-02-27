@@ -32,6 +32,8 @@ class LSTM_Model(torch.nn.Module):
         return x
 
 def train(x, y, n_epochs):
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print("using " + str(device))
         x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.05, random_state=42)
         x_train = torch.tensor(x_train, dtype=torch.float32)
         y_train = torch.tensor(y_train, dtype=torch.float32)
@@ -39,7 +41,7 @@ def train(x, y, n_epochs):
         y_test = torch.tensor(y_test, dtype=torch.float32)
 
         # Set up the model
-        model = LSTM_Model()
+        model = LSTM_Model().to(device)
         optimizer = optim.Adam(model.parameters())
         loss_fn = nn.MSELoss()
         
