@@ -47,6 +47,7 @@ def train(x, y, n_epochs):
         
         # Load the training data
         train_dataset = TensorDataset(x_train, y_train)
+        print("batch size: ", 2)
         loader = DataLoader(train_dataset, shuffle=True, batch_size=2)
 
         print("training started..")
