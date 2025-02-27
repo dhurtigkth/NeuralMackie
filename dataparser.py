@@ -13,7 +13,7 @@ def audio_parser(filepath_clean, filepath_dist, buffer_size):
     print("we're in..")
     for filename in glob.glob(os.path.join(filepath_clean, '*.wav')):
         print("FILENAME: ", filename)
-        name = filename.split("/")[6].split("_")
+        name = filename.split("/")[7].split("_")
         print("NAME: ", name)
         # Use the name to get the parameter values from the mixing table
         trim, high, mid, skew, low = int(name[1][1:]), int(name[2][1:]), int(name[3][1:]), int(name[4][4:]), int(name[5][1:].split(".")[0]), 
