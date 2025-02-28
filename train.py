@@ -27,8 +27,9 @@ class LSTM_Model(torch.nn.Module):
     def forward(self, x):
         # x shape: (batch_size, sequence_length=512, input_size=6)
         x, _ = self.lstm(x)  # Output shape: (batch_size, 512, hidden_size=50)
-        x = x[:, -1, :]       # Take the last time step (batch_size, 50)
+        #x = x[:, -1, :]       # Take the last time step (batch_size, 50)
         x = self.linear(x)    # Output shape: (batch_size, 512)
+        x = x.squeeze(-1)
         return x
 
 def train(x, y, n_epochs):
