@@ -52,7 +52,7 @@ def train(x, y, n_epochs):
         test_dataset = TensorDataset(x_test, y_test)
         test_loader = DataLoader(test_dataset, shuffle=True, batch_size=2)
 
-        print("training started..")
+        print("training started for " + str(n_epoch) + " epochs..")
         for epoch in range(n_epochs):
             model.train()
             for X_batch, y_batch in tqdm(train_loader, desc=f"Epoch {epoch+1}/{n_epochs}", leave=False):
