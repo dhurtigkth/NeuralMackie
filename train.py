@@ -57,7 +57,7 @@ def train(x, y, n_epochs):
             model.train()
             for X_batch, y_batch in tqdm(train_loader, desc=f"Epoch {epoch+1}/{n_epochs}", leave=False):
                 y_pred = model(X_batch)
-                print("shape pred: ", np.shape(y_pred))
+                #print("shape pred: ", np.shape(y_pred))
                 loss = loss_fn(y_pred, y_batch)
                 optimizer.zero_grad()
                 loss.backward()
