@@ -77,7 +77,7 @@ def train(x, y, n_epochs):
                     num_batches += 1
                     torch.cuda.empty_cache()  # Free up memory
             print("Epoch %d: test RMSE %.4f" % (epoch, test_rmse_total/num_batches))
-            return model
+        return model
     
 
 
